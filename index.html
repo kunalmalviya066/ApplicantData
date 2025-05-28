@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Application Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: #fff;
+      max-width: 700px;
+      width: 95%;
+      margin: 3rem auto;
+      padding: 2.5rem 3rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(38, 57, 77, 0.2);
+    }
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #1a1a1a;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #444;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      margin-top: 0.3rem;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #2575fc;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .qr {
+      margin-top: 2rem;
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px #e0e0e0;
+    }
+    .qr p {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+    .qr img {
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4);
+      max-width: 1000px;
+      height: auto;
+    }
+    .checkbox-label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+    .submit-btn {
+      margin-top: 2rem;
+      padding: 1rem 0;
+      width: 100%;
+      background: #2575fc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background: #185bcc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Job & Internship Application With AllTimeLinks</h2>
+    <form id="applicationForm">
+      <label for="fullName">Full Name</label>
+      <input id="fullName" name="fullName" required />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required />
+
+      <label for="phone">Phone</label>
+      <input id="phone" name="phone" type="tel" required />
+
+      <label for="dob">Date of Birth</label>
+      <input id="dob" name="dob" type="date" required />
+
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" required></textarea>
+
+      <label for="position">Position Applying For</label>
+      <input id="position" name="position" required />
+
+      <label for="type">Type</label>
+      <select id="type" name="type" required>
+        <option value="">Select</option>
+        <option value="Job">Job</option>
+        <option value="Internship">Internship</option>
+        <option value="Both">Both</option>
+      </select>
+
+      <label for="education">Education</label>
+      <input id="education" name="education" required />
+
+      <label for="experience">Experience (years)</label>
+      <input id="experience" name="experience" type="number" min="0" required />
+
+      <label for="skills">Skills</label>
+      <input id="skills" name="skills" />
+
+      <label for="resume">Resume (Google Drive link)</label>
+      <input id="resume" name="resume" type="url" required />
+
+      <label for="coverLetter">Cover Letter</label>
+      <textarea id="coverLetter" name="coverLetter"></textarea>
+
+      <label for="utr">UTR Number (Payment Reference)</label>
+      <input id="utr" name="utr" placeholder="Enter your UTR number" required />
+
+      <div class="qr">
+        <p><strong>Platform Fee: ₹49</strong> — Scan QR</p>
+        <img 
+          src="https://res.cloudinary.com/dzz2nken6/image/upload/v1748426652/MYQR_gjb18x.jpg" 
+          alt="Payment QR Code" 
+          width="200" 
+          height="190" 
+        />
+        <label class="checkbox-label">
+          <input type="checkbox" name="paymentConfirmed" required />
+          I confirm I have paid ₹49
+        </label>
+      </div>
+
+      <button class="submit-btn" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("applicationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = this;
+      const formData = new FormData(form);
+      const data = {};
+
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      fetch("https://script.google.com/macros/s/AKfycbzv01q5J4P8t4GlTvZS880qzL44jacd-K-AKDFJ-6oY5Sa6isQ3m46uNyo2S9_6Hgtezg/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(response => response.json())
+      .then(() => {
+        alert("Submitted! First We Verify Your Payment. You Will Receive Next Steps By Email. Thank You!");
+        form.reset();
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        alert("Submission failed. Check console for error.");
+      });
+    });
+  </script>
+</body>
+</html>
